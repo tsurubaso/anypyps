@@ -1,0 +1,29 @@
+
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+/* static/css/styles.css */
+body {
+    line-height: 1.6;
+        background-color: #fafafa;
+    font-family: sans-serif;
+    margin: 20px;
+    color: #7DDA58;
+}
+
+/* Slight hover effect on article blocks */
+.article:hover {
+    background-color: #f9fafb; /* light gray */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Customize link appearance */
+.article h2 a {
+    text-decoration: none;
+}
+
+.article h2 a:hover {
+    text-decoration: underline;
+}

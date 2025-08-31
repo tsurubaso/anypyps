@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Favicon.png') }}">
+
+  <title>{% block title %}PS Postscrivum{% endblock %}</title>
+
+  <!-- Your custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+  {% block head %}{% endblock %}
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  {% include 'navbar.html' %}
+
+  <main class="p-8">
+    {% block content %}{% endblock %}
+  </main>
+
+</body>
+</html>

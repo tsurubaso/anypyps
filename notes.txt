@@ -1,0 +1,62 @@
+Replace styles.css
+
+
+my_flask_app/
+│
+├── app/
+│ ├── init.py # Initializes the app, routes, and blueprints
+│ ├── routes.py # Main routes for the app
+│ ├── models.py # Database models
+│ ├── forms.py # Forms for user input handling (e.g., using WTForms)
+│ ├── templates/ # HTML templates (Jinja2)
+│ │ ├── base.html # Base HTML template (extends other templates)
+│ │ ├── index.html # Home page
+│ │ ├── login.html # Login page
+│ │ └── dashboard.html # Dashboard page (example)
+│ ├── static/ # Static files (CSS, JS, images)
+│ │ ├── css/
+│ │ │ └── style.css # CSS file
+│ │ ├── js/
+│ │ │ └── main.js # JavaScript file
+│ │ └── images/
+│ │ └── logo.png # Example image file
+│ ├── utils/ # Utility functions (e.g., email, logging)
+│ │ └── helpers.py # Helper functions for app logic
+│ └── auth/ # Authentication blueprint
+│ ├── init.py # Initialize the auth blueprint
+│ ├── routes.py # Routes for login, signup, etc.
+│ └── forms.py # Authentication-related forms
+│
+├── config.py # Configuration file (e.g., for DB, secret keys)
+├── requirements.txt # List of Python dependencies
+├── .env # Environment variables (e.g., FLASK_APP, FLASK_ENV)
+├── run.py # Entry point for running the app
+├── migrations/ # Database migrations (if using Flask-Migrate)
+├── venv/ # Virtual environment (optional, often ignored in Git)
+└── README.md # Project documentation
+
+
+####################################
+
+tu regardes et effaces
+
+import time
+
+cached_news = None
+last_fetched_time = 0
+
+def fetch_news():
+    global cached_news, last_fetched_time
+
+    if time.time() - last_fetched_time < 60:  # cache for 60 seconds
+        print("Using cached news data.")
+        return cached_news
+
+    # Fetch fresh data
+    ...
+    if response.status_code == 200:
+        data = response.json()
+        cached_news = data
+        last_fetched_time = time.time()
+        return data
+
