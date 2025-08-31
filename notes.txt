@@ -38,25 +38,13 @@ my_flask_app/
 
 ####################################
 
-tu regardes et effaces
-
-import time
-
-cached_news = None
-last_fetched_time = 0
-
-def fetch_news():
-    global cached_news, last_fetched_time
-
-    if time.time() - last_fetched_time < 60:  # cache for 60 seconds
-        print("Using cached news data.")
-        return cached_news
-
-    # Fetch fresh data
-    ...
-    if response.status_code == 200:
-        data = response.json()
-        cached_news = data
-        last_fetched_time = time.time()
-        return data
+pour updater Github
+git status                   # voir les changements
+git add .                    # ajouter tous les fichiers modifiés
+git commit -m "message"      # enregistrer les changements localement
+git push -u origin main      # envoyer sur GitHub
+Quand tu modifies du code :
+git add .
+git commit -m "description de mes changements"
+git push
 
