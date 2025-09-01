@@ -14,7 +14,13 @@
   <!-- Your custom CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
-  {% block head %}{% endblock %}
+  {% block head %}
+<meta property="og:title" content="{% block og_title %}Postscrivum{% endblock %}">
+<meta property="og:description" content="{% block og_description %}Search and explore the latest news.{% endblock %}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.url }}">
+<meta property="og:image" content="{{ url_for('static', filename='images/Favicon.png', _external=True) }}">
+  {% endblock %}
 </head>
 <body class="bg-gray-100 text-gray-900">
 
@@ -23,6 +29,7 @@
   <main class="p-8">
     {% block content %}{% endblock %}
   </main>
-
+ <!-- Link to external JS file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

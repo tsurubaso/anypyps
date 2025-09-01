@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Edit Article{% endblock %}
+
+{% block content %}
+<section class="max-w-3xl mx-auto bg-white p-6 rounded shadow space-y-6">
+  <h1 class="text-2xl font-bold text-gray-800">Edit Article</h1>
+
+  <!-- Title -->
+  <div>
+    <div class="flex justify-between items-center">
+      <h2 class="text-sm font-semibold text-gray-600">Title</h2>
+      <div class="space-x-2">
+        <button onclick="editField('title')" class="text-blue-600 text-sm hover:underline">Edit</button>
+        <button onclick="eraseField('title')" class="text-red-600 text-sm hover:underline">Erase</button>
+      </div>
+    </div>
+    <p id="title-display" class="mt-1 text-gray-800">{{ article.title }}</p>
+    <input type="text" name="title" id="title-input" class="mt-1 w-full border rounded p-2 hidden" value="{{ article.title }}">
+  </div>
+
+  <!-- Description -->
+  <div>
+    <div class="flex justify-between items-center">
+      <h2 class="text-sm font-semibold text-gray-600">Description</h2>
+      <div class="space-x-2">
+        <button onclick="editField('description')" class="text-blue-600 text-sm hover:underline">Edit</button>
+        <button onclick="eraseField('description')" class="text-red-600 text-sm hover:underline">Erase</button>
+      </div>
+    </div>
+    <textarea name="description" id="description-input"
+              class="mt-1 w-full border rounded p-2 hidden">{{ article.description }}</textarea>
+    <p id="description-display" class="mt-1 text-gray-800 whitespace-pre-line">
+      {{ article.description }}
+    </p>
+  </div>
+
+  <!-- Image -->
+  <div>
+    <div class="flex justify-between items-center">
+      <h2 class="text-sm font-semibold text-gray-600">Image</h2>
+      <div class="space-x-2">
+        <button onclick="editField('image')" class="text-blue-600 text-sm hover:underline">Edit</button>
+        <button onclick="eraseField('image')" class="text-red-600 text-sm hover:underline">Erase</button>
+      </div>
+    </div>
+    {% if article.urlToImage %}
+      <img src="{{ article.urlToImage }}" alt="Image" class="mt-2 max-h-64 rounded shadow">
+    {% else %}
+      <p class="mt-2 text-sm text-gray-400">No image available.</p>
+    {% endif %}
+    <input type="text" name="urlToImage" id="image-input"
+           class="mt-1 w-full border rounded p-2 hidden" value="{{ article.urlToImage }}">
+  </div>
+
+  <!-- Source -->
+  <div>
+    <div class="flex justify-between items-center">
+      <h2 class="text-sm font-semibold text-gray-600">Source</h2>
+      <div class="space-x-2">
+        <button onclick="editField('source')" class="text-blue-600 text-sm hover:underline">Edit</button>
+        <button onclick="eraseField('source')" class="text-red-600 text-sm hover:underline">Erase</button>
+      </div>
+    </div>
+    <p id="source-display" class="mt-1 text-gray-800">{{ article.source.name if article.source else '' }}</p>
+    <input type="text" name="source" id="source-input"
+           class="mt-1 w-full border rounded p-2 hidden"
+           value="{{ article.source.name if article.source else '' }}">
+  </div>
+
+  <!-- Submit -->
+  <form method="post">
+    <input type="hidden" name="title" id="hidden-title" value="{{ article.title }}">
+    <input type="hidden" name="description" id="hidden-description" value="{{ article.description }}">
+    <input type="hidden" name="urlToImage" id="hidden-image" value="{{ article.urlToImage }}">
+    <input type="hidden" name="source" id="hidden-source" value="{{ article.source.name if article.source else '' }}">
+
+    <button type="submit"
+            class="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+      Save Changes
+    </button>
+  </form>
+
+  <a href="{{ url_for('home') }}" class="inline-block mt-4 text-blue-600 text-sm underline">← Back to Search</a>
+</section>
+{% endblock %}

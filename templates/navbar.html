@@ -1,20 +1,27 @@
-<nav class="bg-blue-600 text-white p-4">
-  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between">
-    <div class="text-xl font-bold mb-2 sm:mb-0">Postscrivum</div>
-    <ul class="flex flex-col sm:flex-row sm:space-x-4">
-      <li>
-      <a href="{{ url_for('home') }}"
-     class="{% if current_page == 'home' %}underline font-bold{% else %}hover:underline{% endif %}">
-     Home
-  </a>
-      </li>
-      <li>
-  <a href="{{ url_for('about') }}"
-     class="{% if current_page == 'about' %}underline font-bold{% else %}hover:underline{% endif %}">
-     About
-  </a>
-      </li>
-      <!-- Add more links as needed -->
-    </ul>
-  </div>
+<nav class="bg-blue-400 text-white p-4">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between">
+
+        <!-- Logo + Title -->
+        <div class="flex items-center space-x-2 text-xl font-bold mb-2 sm:mb-0">
+            <img src="{{ url_for('static', filename='images/BREAKING.png') }}" alt="Logo" class="h-8 w-15">
+            <span>Postscrivum</span>
+        </div>
+
+        <!-- Nav Links -->
+        <ul class="flex flex-col sm:flex-row sm:space-x-4">
+            <li>
+                <a href="{{ url_for('home') }}"
+                    class="{% if current_page == 'home' %}underline font-bold{% else %}hover:underline{% endif %}">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('about') }}"
+                    class="{% if current_page == 'about' %}underline font-bold{% else %}hover:underline{% endif %}">
+                    About
+                </a>
+            </li>
+            <!-- Add more links as needed -->
+        </ul>
+    </div>
 </nav>

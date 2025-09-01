@@ -37,14 +37,3 @@ my_flask_app/
 
 
 ####################################
-
-pour updater Github
-git status                   # voir les changements
-git add .                    # ajouter tous les fichiers modifiés
-git commit -m "message"      # enregistrer les changements localement
-git push -u origin main      # envoyer sur GitHub
-Quand tu modifies du code :
-git add .
-git commit -m "description de mes changements"
-git push
-
