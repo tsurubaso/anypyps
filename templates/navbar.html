@@ -12,7 +12,19 @@
             <li>
                 <a href="{{ url_for('home') }}"
                     class="{% if current_page == 'home' %}underline font-bold{% else %}hover:underline{% endif %}">
-                    Home
+                    News Api
+                </a>
+            </li>
+                        <li>
+                <a href="{{ url_for('GNAPI') }}"
+                    class="{% if current_page == 'GNAPI' %}underline font-bold{% else %}hover:underline{% endif %}">
+                    GNAPI
+                </a>
+            </li>
+                                    <li>
+                <a href="{{ url_for('GN') }}"
+                    class="{% if current_page == 'GN' %}underline font-bold{% else %}hover:underline{% endif %}">
+                    GN
                 </a>
             </li>
             <li>

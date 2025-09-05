@@ -1,0 +1,6 @@
+# I will complet that progressively
+
+#pip install google-news-api
+#pip install gnews
+#https://www.lemonde.fr/en/rss/une.xml
+#https://www.euronews.com/rss?level=program&name=home

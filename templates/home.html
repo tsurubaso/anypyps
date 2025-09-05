@@ -1,66 +1,50 @@
-{% extends "base.html" %}
-
-{% block title %}Home{% endblock %}
-
-{% block head %}
-<meta name="description" content="News search by keyword.">
-<meta property="og:title" content="{% block og_title %}News Search{% endblock %}">
-<meta property="og:description" content="Search and explore recent news by keywords.">
-{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block head %}
+<meta name="description" content="News search by keyword." />
+<meta property="og:title" content="{% block og_title %}News Search{% endblock %}" />
+<meta property="og:description" content="Search and explore recent news by keywords." />
+{% endblock %} {% block content %}
 <section class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
     <h1 class="text-3xl font-bold mb-4 text-gray-800">Search News</h1>
 
-    <form method="get" action="/" class="mb-6">
+    <form method="get" action="{{ url_for(request.endpoint) }}" class="mb-6">
         <label for="query" class="block text-sm font-medium text-gray-700">Enter a keyword:</label>
         <input type="text" name="query" id="query" value="{{ query }}" placeholder="e.g. salade"
-            class="mt-1 block w-full p-2 border border-gray-300 rounded">
-        <button type="submit" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Search</button>
+            class="mt-1 block w-full p-2 border border-gray-300 rounded" />
+        <button type="submit" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+            Search
+        </button>
     </form>
 
-
-
-
     {% if query %}
-    <p class="text-gray-600 mb-4">Showing results for "<strong>{{ query }}</strong>"</p>
-    {% endif %}
-
-    {% if articles %}
-    {% for article in articles %}
+    <p class="text-gray-600 mb-4">
+        Showing results for "<strong>{{ query }}</strong>"
+    </p>
+    {% endif %} {% if articles %} {% for article in articles %}
     <div class="article mb-6 pb-4 border-b hover:bg-gray-50 transition duration-200 rounded p-4">
-        <h2 class="text-xl font-bold text-blue-800 mb-2"><a href="{{ article.url }}" target="_blank">{{ article.title
-                }}</a></h2>
+        <h2 class="text-xl font-bold text-blue-800 mb-2">
+            <a href="{{ article.url }}" target="_blank">{{ article.title }}</a>
+        </h2>
         {% if article.description %}
         <p class="text-gray-700 text-sm leading-relaxed mb-2">
-        <p>{{ article.description[:600] ~ '...' }}</p>
-        {% endif %}
-
-        {% if article.source.name or article.publishedAt %}
+        {{ article.description[:600] ~ '...' }}</p>
+        {% endif %} {% if article.source.name or article.publishedAt %}
         <div class="text-xs text-gray-500 italic">
-            {{ article.source.name }}
-            {% if article.publishedAt %}
-            • {{ article.publishedAt[:10] }}
-            {% endif %}
+            {{ article.source.name }} {% if article.publishedAt %} • {{
+            article.publishedAt[:10] }} {% endif %}
         </div>
+        {% endif %} {% if article.urlToImage %}
+        <img src="{{ article.urlToImage }}" onerror="this.style.display='none'" alt="Article image"
+            class="mt-2 rounded shadow max-w-full h-64 object-cover" />
+
+        <a href="{{ url_for('edit_article', index=loop.index0) }}"
+            class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-1 px-3 rounded">
+            View & Edit
+        </a>
         {% endif %}
-
-      {% if article.urlToImage %}
-    <img src="{{ article.urlToImage }}" onerror="this.style.display='none'" alt="Article image"
-         class="mt-2 rounded shadow max-w-full h-64 object-cover">
-
-    <a href="{{ url_for('edit_article', index=loop.index0) }}"
-       class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-1 px-3 rounded">
-        View & Edit
-    </a>
-{% endif %}
-
+        <p class="text-xs text-gray-500 italic">Source API : {{ source_api }}</p>
     </div>
-    {% endfor %}
-    {% else %}
-    {% if query %}
+    {% endfor %} {% else %} {% if query %}
     <p>No news found for this keyword.</p>
-    {% endif %}
-    {% endif %}
+    {% endif %} {% endif %}
 </section>
 {% endblock %}
